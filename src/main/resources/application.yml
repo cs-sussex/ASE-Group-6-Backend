@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      database: Group6ASE
+      host: localhost
+      port: 27017
+
+jwt:
+  secret: ThisIsClearlyARandomSecret
+  ExpirationMs: 86400000
