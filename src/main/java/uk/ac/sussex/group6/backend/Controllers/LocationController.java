@@ -7,7 +7,7 @@ import uk.ac.sussex.group6.backend.Payloads.AddLocationRequest;
 import uk.ac.sussex.group6.backend.Services.LocationService;
 
 @RestController
-@RequestMapping("/Location")
+@RequestMapping("/location")
 public class LocationController {
 
     @Autowired

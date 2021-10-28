@@ -21,7 +21,7 @@ import uk.ac.sussex.group6.backend.Services.UserService;
  * JWT Entry controller
  */
 @RestController
-@RequestMapping("/api/auth/")
+@RequestMapping("/auth/")
 @CrossOrigin
 public class JwtAuthenticationController {
 
