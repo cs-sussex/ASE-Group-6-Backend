@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import uk.ac.sussex.group6.backend.Models.User;
 import uk.ac.sussex.group6.backend.Payloads.JwtResponse;
 import uk.ac.sussex.group6.backend.Payloads.LoginRequest;
 import uk.ac.sussex.group6.backend.Payloads.SignupRequest;
@@ -54,10 +55,10 @@ public class JwtAuthenticationController {
         authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getEmail());
-
+        User user = userService.getByEmail(authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token,
-                userDetails.getUsername()));
+                userDetails.getUsername(), user.getId()));
     }
 
     private void authenticate(String username, String password) throws Exception {

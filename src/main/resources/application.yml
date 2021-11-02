@@ -4,6 +4,8 @@ spring:
       database: Group6ASE
       host: localhost
       port: 27017
+      username: ADMIN
+      password: ASEG6ANKEET1
 
 jwt:
   secret: ThisIsClearlyARandomSecret
