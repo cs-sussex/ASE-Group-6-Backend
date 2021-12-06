@@ -5,7 +5,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uk.ac.sussex.group6.backend.Exceptions.BadRequestException;
 import uk.ac.sussex.group6.backend.Models.User;
+import uk.ac.sussex.group6.backend.Payloads.ChangePasswordRequest;
 import uk.ac.sussex.group6.backend.Payloads.SignupRequest;
+import uk.ac.sussex.group6.backend.Payloads.UpdateUserRequest;
 import uk.ac.sussex.group6.backend.Repositories.UserRepository;
 
 import java.util.Date;
@@ -37,5 +39,17 @@ public class UserService {
 
     public User getByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(()-> new BadRequestException("Could not find user by email"));
+    }
+
+    public User updateUser(String id, UpdateUserRequest updateUserRequest) {
+        User u = userRepository.findById(id).orElseThrow(() -> new BadRequestException("User not found"));
+        u.setFirstname(updateUserRequest.getFirstname());
+        u.setLastname(updateUserRequest.getLastname());
+        return userRepository.save(u);
+    }
+
+    public void changePassword(ChangePasswordRequest changePasswordRequest, User user) {
+        user.setPassword(encoder.encode(changePasswordRequest.getNewPassword()));
+        userRepository.save(user);
     }
 }

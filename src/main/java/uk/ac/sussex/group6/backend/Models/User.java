@@ -1,6 +1,7 @@
 package uk.ac.sussex.group6.backend.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class User {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
 
