@@ -7,10 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangePasswordRequest {
+public class SpecificLocationResponse {
 
-    private String oldPassword;
+    private String postcode;
 
-    private String newPassword;
+    private Double averageValue;
+
+    private Integer numberOfProperties;
 
 }
