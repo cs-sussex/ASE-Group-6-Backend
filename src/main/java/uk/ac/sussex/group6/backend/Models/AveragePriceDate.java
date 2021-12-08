@@ -10,6 +10,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AveragePriceDate {
-    private Integer averagePrice;
+    private Double averagePrice;
     private Date date;
 }

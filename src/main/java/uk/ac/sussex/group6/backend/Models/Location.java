@@ -28,7 +28,7 @@ public class Location {
 
     private ArrayList<AveragePriceDate> averagePriceDates;
 
-    public Location(User user, String location_name, String postcode, Integer averagePrice, Date averagePriceTakenOnDate, String colour) {
+    public Location(User user, String location_name, String postcode, Double averagePrice, Date averagePriceTakenOnDate, String colour) {
         this.user = user;
         this.location_name = location_name;
         this.postcode = postcode;

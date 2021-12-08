@@ -20,6 +20,6 @@ public class AddLocationRequest {
 
     private String postcode;
 
-    private Integer averagePrice;
+    private Double averagePrice;
 
 }

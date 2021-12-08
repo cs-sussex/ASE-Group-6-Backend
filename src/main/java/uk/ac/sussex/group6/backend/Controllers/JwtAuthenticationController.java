@@ -87,9 +87,9 @@ public class JwtAuthenticationController {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
     }
 
-    @PutMapping("/user/{id}/changepassword")
-    public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest, @PathVariable String id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new BadRequestException("User not found"));
+    @PutMapping("/user/changepassword")
+    public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest,@CurrentUser UserDetailsImpl userDetails) {
+        User user = userRepository.findById(userDetails.getId()).orElseThrow(() -> new BadRequestException("User not found"));
         try {
             authenticate(user.getEmail(), changePasswordRequest.getOldPassword());
         } catch (Exception e) {

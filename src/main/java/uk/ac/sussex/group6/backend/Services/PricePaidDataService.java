@@ -4,6 +4,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.ac.sussex.group6.backend.Models.*;
 import uk.ac.sussex.group6.backend.Repositories.PricePaidDataRepository;
@@ -46,6 +47,13 @@ public class PricePaidDataService {
                 convertToRecords(s);
             }
             }
+    }
+
+    @Scheduled(cron = "0 0 3 14 1/1 *")
+    private void scheduledDownload() {
+        System.out.println("Starting download of new monthly data");
+        convertToRecords("http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-monthly-update-new-version.csv");
+        System.out.println("Monthly data download complete");
     }
 
     private void downloadFullFile(String fileURL) {

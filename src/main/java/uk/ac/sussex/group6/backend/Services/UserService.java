@@ -45,11 +45,13 @@ public class UserService {
         User u = userRepository.findById(id).orElseThrow(() -> new BadRequestException("User not found"));
         u.setFirstname(updateUserRequest.getFirstname());
         u.setLastname(updateUserRequest.getLastname());
+        u.setDateUpdated(new Date());
         return userRepository.save(u);
     }
 
     public void changePassword(ChangePasswordRequest changePasswordRequest, User user) {
         user.setPassword(encoder.encode(changePasswordRequest.getNewPassword()));
+        user.setDateUpdated(new Date());
         userRepository.save(user);
     }
 }
