@@ -12,4 +12,5 @@ public interface PropertyRepository extends MongoRepository<Property, String> {
     Optional<Property> findByPostcodeAndStreetAndPaon(String postcode, String street, String paon);
 
     List<Property> findAllByPostcodeContains(String postcode);
+    List<Property> findAllByPostcodeStartingWith(String postcode);
 }

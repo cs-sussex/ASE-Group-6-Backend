@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 @Document
@@ -27,10 +28,10 @@ public class User {
 
     private Date dateUpdated;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
     @JsonIgnore
     private String password;
-
 
 }

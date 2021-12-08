@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.ac.sussex.group6.backend.Models.User;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +16,10 @@ public class AddLocationRequest {
 
     private String location_name;
 
-    private double longitude;
-
-    private double latitude;
-
     private String colour;
+
+    private String postcode;
+
+    private Integer averagePrice;
 
 }
