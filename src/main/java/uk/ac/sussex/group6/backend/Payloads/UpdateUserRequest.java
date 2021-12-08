@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangePasswordRequest {
+public class UpdateUserRequest {
 
-    private String oldPassword;
-
-    private String newPassword;
-
+    private String firstname;
+    private String lastname;
 }

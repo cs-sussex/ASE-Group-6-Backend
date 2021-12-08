@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 @Document
 @Data
 @AllArgsConstructor
@@ -19,18 +22,19 @@ public class Location {
 
     private String location_name;
 
-    private double longitude;
-
-    private double latitude;
+    private String postcode;
 
     private String colour;
 
-    public Location(User user, String location_name, double longitude, double latitude, String colour) {
+    private ArrayList<AveragePriceDate> averagePriceDates;
+
+    public Location(User user, String location_name, String postcode, Double averagePrice, Date averagePriceTakenOnDate, String colour) {
         this.user = user;
         this.location_name = location_name;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.postcode = postcode;
         this.colour = colour;
+        this.averagePriceDates = new ArrayList<>();
+        this.averagePriceDates.add(new AveragePriceDate(averagePrice, averagePriceTakenOnDate));
     }
 
 }

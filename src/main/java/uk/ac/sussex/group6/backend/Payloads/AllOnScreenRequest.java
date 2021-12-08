@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangePasswordRequest {
+public class AllOnScreenRequest {
 
-    private String oldPassword;
-
-    private String newPassword;
+    private ArrayList<String> outcodes;
 
 }
