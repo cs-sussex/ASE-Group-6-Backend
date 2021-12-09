@@ -25,7 +25,7 @@ public class AveragePriceForPostcodeService {
             postcodeOptional.get().setAverage(averagePriceForPostcode.getAverage());
             postcodeOptional.get().setNumberOfProperties(averagePriceForPostcode.getNumberOfProperties());
             postcodeOptional.get().setDateChecked(new Date());
-            repository.save(postcodeOptional.get());
+            return repository.save(postcodeOptional.get());
         }
         return repository.save(averagePriceForPostcode);
     }

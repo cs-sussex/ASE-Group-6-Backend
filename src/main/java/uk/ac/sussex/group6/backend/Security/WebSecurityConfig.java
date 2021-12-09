@@ -78,6 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/property/**")
                 .permitAll()
+                .antMatchers("/police")
+                .permitAll()
                 .anyRequest()
                 .authenticated();
 
