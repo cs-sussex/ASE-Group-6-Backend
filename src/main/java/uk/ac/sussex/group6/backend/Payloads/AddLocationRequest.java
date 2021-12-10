@@ -18,7 +18,9 @@ public class AddLocationRequest {
 
     private String colour;
 
-    private String postcode;
+    private String longitude;
+
+    private String latitude;
 
     private Double averagePrice;
 
