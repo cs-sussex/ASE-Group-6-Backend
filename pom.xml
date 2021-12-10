@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>uk.ac.sussex.group6</groupId>
-	<artifactId>ASEGroup6</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>ASEGroup6</name>
+	<artifactId>ase-group-6</artifactId>
+	<version>LATEST</version>
+	<name>ase-group-6</name>
 	<description>The backend for the ASE group project cross platform application</description>
 	<properties>
 		<java.version>11</java.version>
@@ -97,6 +97,27 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>

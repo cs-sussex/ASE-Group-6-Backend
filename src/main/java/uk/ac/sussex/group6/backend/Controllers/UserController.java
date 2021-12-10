@@ -21,4 +21,9 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(userDetails.getId(), updateUserRequest));
     }
 
+    @DeleteMapping("delete")
+    public ResponseEntity<Void> deleteUser(@CurrentUser UserDetailsImpl userDetails) {
+        return userService.deleteUser(userDetails.getId());
+    }
+
 }
