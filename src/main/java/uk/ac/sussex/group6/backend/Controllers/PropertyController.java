@@ -20,7 +20,7 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.findAllWherePostcodeContains(postcode));
     }
 
-    @GetMapping()
+    @PostMapping()
     public ResponseEntity<?> getAllValuesFor(@RequestBody AllOnScreenRequest allOnScreenRequest) {
         return ResponseEntity.ok(propertyService.allOnScreen(allOnScreenRequest));
     }
