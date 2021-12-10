@@ -34,7 +34,8 @@ public class LocationService {
         return locationRepository.save(new Location(userService.getById(
                 addLocationRequest.getUserId()),
                 addLocationRequest.getLocation_name(),
-                addLocationRequest.getPostcode(),
+                addLocationRequest.getLongitude(),
+                addLocationRequest.getLatitude(),
                 addLocationRequest.getAveragePrice(),
                 new Date(),
                 addLocationRequest.getColour())

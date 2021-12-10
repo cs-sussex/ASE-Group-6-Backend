@@ -22,16 +22,19 @@ public class Location {
 
     private String location_name;
 
-    private String postcode;
+    private String longitude;
+
+    private String latitude;
 
     private String colour;
 
     private ArrayList<AveragePriceDate> averagePriceDates;
 
-    public Location(User user, String location_name, String postcode, Double averagePrice, Date averagePriceTakenOnDate, String colour) {
+    public Location(User user, String location_name, String longitude, String latitude, Double averagePrice, Date averagePriceTakenOnDate, String colour) {
         this.user = user;
         this.location_name = location_name;
-        this.postcode = postcode;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.colour = colour;
         this.averagePriceDates = new ArrayList<>();
         this.averagePriceDates.add(new AveragePriceDate(averagePrice, averagePriceTakenOnDate));

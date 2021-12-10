@@ -2,15 +2,12 @@ package uk.ac.sussex.group6.backend.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import uk.ac.sussex.group6.backend.Models.AveragePriceDate;
 import uk.ac.sussex.group6.backend.Payloads.AddLocationRequest;
 import uk.ac.sussex.group6.backend.Security.CurrentUser;
 import uk.ac.sussex.group6.backend.Security.UserDetailsImpl;
 import uk.ac.sussex.group6.backend.Services.LocationService;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/location")
