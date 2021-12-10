@@ -30,7 +30,7 @@ public class PricePaidDataService {
 
     private String[] yearURLS = new String[8];
 
-    @PostConstruct
+
     private void pullData() {
 
         yearURLS[0] = "http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com/pp-2021.csv";

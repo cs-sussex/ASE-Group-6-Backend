@@ -34,46 +34,14 @@ import java.nio.file.attribute.UserPrincipal;
 @CrossOrigin
 public class JwtAuthenticationController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private JwtUserDetailsService userDetailsService;
 
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("/test")
-    public ResponseEntity<?> test() {
-        return ResponseEntity.ok("Working");
-    }
-
 
     @PostMapping("signin")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(authenticationRequest.getEmail());
-        User user = userService.getByEmail(authenticationRequest.getEmail());
-        final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token,
-                userDetails.getUsername(), user.getId()));
-    }
-
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
+        return ResponseEntity.ok(userService.signInUser(authenticationRequest));
     }
 
     @PostMapping("signup")
@@ -82,21 +50,14 @@ public class JwtAuthenticationController {
     }
 
     @GetMapping("/me")
-    public User getMyself(@CurrentUser UserDetailsImpl userPrincipal) {
-        return userRepository.findById(userPrincipal.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+    public ResponseEntity<?> getMyself(@CurrentUser UserDetailsImpl userPrincipal) {
+        return ResponseEntity.ok(userService.getById(userPrincipal.getId()));
     }
 
     @PutMapping("/user/changepassword")
     public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest,@CurrentUser UserDetailsImpl userDetails) {
-        User user = userRepository.findById(userDetails.getId()).orElseThrow(() -> new BadRequestException("User not found"));
-        try {
-            authenticate(user.getEmail(), changePasswordRequest.getOldPassword());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        userService.changePassword(changePasswordRequest, user);
-        return ResponseEntity.ok().build();
+        return userService.changePassword(changePasswordRequest, userDetails.getId());
+
     }
 
 }
